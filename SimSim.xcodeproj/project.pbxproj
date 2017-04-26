@@ -14,6 +14,7 @@
 		9AE0DDA41DAE4852000029EC /* empty_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AE0DDA31DAE4852000029EC /* empty_icon.png */; };
 		BE7C115219E56B4F001A6220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7C115119E56B4F001A6220 /* main.m */; };
 		BE7C115519E56B4F001A6220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7C115419E56B4F001A6220 /* AppDelegate.m */; };
+		EA9D935E1EB0CDC50024B053 /* SimulatorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D935D1EB0CDC50024B053 /* SimulatorsManager.m */; };
 		EAE2ADCE1EAF7207009D3F39 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2ADCD1EAF7207009D3F39 /* FileManager.m */; };
 		EAE2ADD21EB07943009D3F39 /* Realm.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2ADD11EB07943009D3F39 /* Realm.m */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,8 @@
 		BE7C115119E56B4F001A6220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE7C115319E56B4F001A6220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BE7C115419E56B4F001A6220 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EA9D935C1EB0CDC50024B053 /* SimulatorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulatorsManager.h; path = Libs/SimulatorsManager.h; sourceTree = "<group>"; };
+		EA9D935D1EB0CDC50024B053 /* SimulatorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimulatorsManager.m; path = Libs/SimulatorsManager.m; sourceTree = "<group>"; };
 		EAE2ADCC1EAF7207009D3F39 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = Libs/FileManager.h; sourceTree = "<group>"; };
 		EAE2ADCD1EAF7207009D3F39 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = Libs/FileManager.m; sourceTree = "<group>"; };
 		EAE2ADD01EB07943009D3F39 /* Realm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Realm.h; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 			children = (
 				EAE2ADCC1EAF7207009D3F39 /* FileManager.h */,
 				EAE2ADCD1EAF7207009D3F39 /* FileManager.m */,
+				EA9D935C1EB0CDC50024B053 /* SimulatorsManager.h */,
+				EA9D935D1EB0CDC50024B053 /* SimulatorsManager.m */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE7C115519E56B4F001A6220 /* AppDelegate.m in Sources */,
+				EA9D935E1EB0CDC50024B053 /* SimulatorsManager.m in Sources */,
 				BE7C115219E56B4F001A6220 /* main.m in Sources */,
 				7C4BC63B1CCA94D200C72BA1 /* Settings.m in Sources */,
 				EAE2ADD21EB07943009D3F39 /* Realm.m in Sources */,

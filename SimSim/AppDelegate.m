@@ -12,6 +12,7 @@
 #import "FileManager.h"
 #import "Settings.h"
 #import "Realm.h"
+#import "SimulatorsManager.h"
 
 #include <Cocoa/Cocoa.h>
 #include <CoreGraphics/CGWindow.h>
@@ -19,6 +20,7 @@
 #import <NetFS/NetFS.h>
 
 #define ALREADY_LAUNCHED_PREFERENCE @"alreadyLaunched"
+#define MAX_EMULATORS 3
 
 //============================================================================
 @interface AppDelegate ()
@@ -400,6 +402,14 @@
 }
 
 //----------------------------------------------------------------------------
+- (NSDictionary*) simulatorProperties:(NSString *)path
+{
+    NSString* simulatorDetailsPath =
+    [path stringByAppendingString:@"device.plist"];
+    
+    return [NSDictionary dictionaryWithContentsOfFile:simulatorDetailsPath];
+}
+
 - (NSDictionary*) activeSimulatorProperties
 {
     NSString* simulatorDetailsPath =
@@ -426,11 +436,9 @@
 //----------------------------------------------------------------------------
 - (NSArray*) installedAppsOnSimulator:(NSString*)simulatorRootPath
 {
-    NSString* installedApplicationsDataPath =
-    [simulatorRootPath stringByAppendingString:@"data/Containers/Data/Application/"];
+    NSString* installedApplicationsDataPath = [simulatorRootPath stringByAppendingString:@"data/Containers/Data/Application/"];
     
-    NSArray* installedApplications =
-    [FileManager getSortedFilesFromFolder:installedApplicationsDataPath];
+    NSArray* installedApplications = [FileManager getSortedFilesFromFolder:installedApplicationsDataPath];
     
     return installedApplications;
 }
@@ -509,6 +517,29 @@
     
     NSArray* installedApplications = [self installedAppsOnSimulator:simulatorRootPath];
     [self addSimulatorApplications:installedApplications usingRootPath:simulatorRootPath toMenu:menu];
+    
+    
+    NSArray *othersEmaulators = [SimulatorsManager availableSimulatorsPath];
+    if (othersEmaulators.count > 0) {
+        [menu addItem:[NSMenuItem separatorItem]];
+    }
+    for (int i=0; i<othersEmaulators.count && i < MAX_EMULATORS; i++) {
+        NSString *path = othersEmaulators[i];
+        NSDictionary* simulatorDetails = [self simulatorProperties:path];
+        NSArray* installedApplications = [self installedAppsOnSimulator:path];
+        if (installedApplications.count > 0) {
+        
+            NSString* simulator_title = [NSString stringWithFormat:@"%@ (%@)",
+                                     [self activeSimulatorName:simulatorDetails],
+                                     [self activeSimulatorRuntime:simulatorDetails]];
+        
+            NSMenuItem* simulator = [[NSMenuItem alloc] initWithTitle:simulator_title action:nil keyEquivalent:@""];
+            [simulator setEnabled:NO];
+            [menu addItem:simulator];
+
+            [self addSimulatorApplications:installedApplications usingRootPath:path toMenu:menu];
+        }
+    }
     
     [self addDevices:[self getDevices] toMenu:menu];
     
